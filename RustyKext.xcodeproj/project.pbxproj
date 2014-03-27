@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		291302DE18E4450900F1D68D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 291302DC18E4450900F1D68D /* InfoPlist.strings */; };
+		291302E018E4450900F1D68D /* RustyKext.c in Sources */ = {isa = PBXBuildFile; fileRef = 291302DF18E4450900F1D68D /* RustyKext.c */; };
+		291302E818E4458200F1D68D /* RustyKext.rs in Sources */ = {isa = PBXBuildFile; fileRef = 291302E718E4458200F1D68D /* RustyKext.rs */; };
+		2979000618E6E2C70080E0E0 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 2979000518E6E2C70080E0E0 /* Readme.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		291302E918E4459100F1D68D /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.rs";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			name = "Rust Source File";
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/rust-bin/${INPUT_FILE_BASE}.o",
+			);
+			script = "mkdir -p ${DERIVED_FILE_DIR}/rust-bin\n/usr/local/bin/rustc --out-dir ${DERIVED_FILE_DIR}/rust-bin -O --emit obj --crate-type staticlib ${INPUT_FILE_PATH}";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		291302D418E4450900F1D68D /* RustyKext.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RustyKext.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		291302D818E4450900F1D68D /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = System/Library/Frameworks/Kernel.framework; sourceTree = SDKROOT; };
+		291302DB18E4450900F1D68D /* RustyKext-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RustyKext-Info.plist"; sourceTree = "<group>"; };
+		291302DD18E4450900F1D68D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		291302DF18E4450900F1D68D /* RustyKext.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = RustyKext.c; sourceTree = "<group>"; };
+		291302E118E4450900F1D68D /* RustyKext-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RustyKext-Prefix.pch"; sourceTree = "<group>"; };
+		291302E718E4458200F1D68D /* RustyKext.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RustyKext.rs; sourceTree = "<group>"; };
+		2979000518E6E2C70080E0E0 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.md; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		291302CF18E4450900F1D68D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		291302C918E4450900F1D68D = {
+			isa = PBXGroup;
+			children = (
+				291302D918E4450900F1D68D /* RustyKext */,
+				291302D618E4450900F1D68D /* Frameworks */,
+				291302D518E4450900F1D68D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		291302D518E4450900F1D68D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				291302D418E4450900F1D68D /* RustyKext.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		291302D618E4450900F1D68D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				291302D718E4450900F1D68D /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		291302D718E4450900F1D68D /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				291302D818E4450900F1D68D /* Kernel.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		291302D918E4450900F1D68D /* RustyKext */ = {
+			isa = PBXGroup;
+			children = (
+				291302DF18E4450900F1D68D /* RustyKext.c */,
+				291302E718E4458200F1D68D /* RustyKext.rs */,
+				291302DA18E4450900F1D68D /* Supporting Files */,
+				2979000518E6E2C70080E0E0 /* Readme.md */,
+			);
+			path = RustyKext;
+			sourceTree = "<group>";
+		};
+		291302DA18E4450900F1D68D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				291302DB18E4450900F1D68D /* RustyKext-Info.plist */,
+				291302DC18E4450900F1D68D /* InfoPlist.strings */,
+				291302E118E4450900F1D68D /* RustyKext-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		291302D018E4450900F1D68D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		291302D318E4450900F1D68D /* RustyKext */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 291302E418E4450900F1D68D /* Build configuration list for PBXNativeTarget "RustyKext" */;
+			buildPhases = (
+				291302CE18E4450900F1D68D /* Sources */,
+				291302CF18E4450900F1D68D /* Frameworks */,
+				291302D018E4450900F1D68D /* Headers */,
+				291302D118E4450900F1D68D /* Resources */,
+				291302D218E4450900F1D68D /* Rez */,
+			);
+			buildRules = (
+				291302E918E4459100F1D68D /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = RustyKext;
+			productName = RustyKext;
+			productReference = 291302D418E4450900F1D68D /* RustyKext.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		291302CA18E4450900F1D68D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 291302CD18E4450900F1D68D /* Build configuration list for PBXProject "RustyKext" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 291302C918E4450900F1D68D;
+			productRefGroup = 291302D518E4450900F1D68D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				291302D318E4450900F1D68D /* RustyKext */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		291302D118E4450900F1D68D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2979000618E6E2C70080E0E0 /* Readme.md in Resources */,
+				291302DE18E4450900F1D68D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		291302D218E4450900F1D68D /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		291302CE18E4450900F1D68D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				291302E018E4450900F1D68D /* RustyKext.c in Sources */,
+				291302E818E4458200F1D68D /* RustyKext.rs in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		291302DC18E4450900F1D68D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				291302DD18E4450900F1D68D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		291302E218E4450900F1D68D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		291302E318E4450900F1D68D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		291302E518E4450900F1D68D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RustyKext/RustyKext-Prefix.pch";
+				INFOPLIST_FILE = "RustyKext/RustyKext-Info.plist";
+				MODULE_NAME = eu.philjordan.RustyKext;
+				MODULE_START = RustyKext_start;
+				MODULE_STOP = RustyKext_stop;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		291302E618E4450900F1D68D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RustyKext/RustyKext-Prefix.pch";
+				INFOPLIST_FILE = "RustyKext/RustyKext-Info.plist";
+				MODULE_NAME = eu.philjordan.RustyKext;
+				MODULE_START = RustyKext_start;
+				MODULE_STOP = RustyKext_stop;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		291302CD18E4450900F1D68D /* Build configuration list for PBXProject "RustyKext" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				291302E218E4450900F1D68D /* Debug */,
+				291302E318E4450900F1D68D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		291302E418E4450900F1D68D /* Build configuration list for PBXNativeTarget "RustyKext" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				291302E518E4450900F1D68D /* Debug */,
+				291302E618E4450900F1D68D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 291302CA18E4450900F1D68D /* Project object */;
+}
