@@ -22,9 +22,10 @@
 			isEditable = 1;
 			name = "Rust Source File";
 			outputFiles = (
-				"$(DERIVED_FILE_DIR)/rust-bin/${INPUT_FILE_BASE}.o",
+				"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.bc",
+				"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.o",
 			);
-			script = "mkdir -p ${DERIVED_FILE_DIR}/rust-bin\n/usr/local/bin/rustc --out-dir ${DERIVED_FILE_DIR}/rust-bin -O --emit obj --crate-type staticlib ${INPUT_FILE_PATH}";
+			script = "mkdir -p \"${DERIVED_FILE_DIR}/rust-bin\"\n/usr/local/bin/rustc --out-dir \"${DERIVED_FILE_DIR}/rust-bin\" -O --emit bc --crate-type staticlib \"${INPUT_FILE_PATH}\" && \"${DT_TOOLCHAIN_DIR}/usr/bin/clang\" -mkernel -msoft-float -c     \"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.bc\" -o \"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.o\"\n";
 		};
 /* End PBXBuildRule section */
 
