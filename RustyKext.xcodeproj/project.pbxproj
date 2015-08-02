@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		291302DE18E4450900F1D68D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 291302DC18E4450900F1D68D /* InfoPlist.strings */; };
 		291302E018E4450900F1D68D /* RustyKext.c in Sources */ = {isa = PBXBuildFile; fileRef = 291302DF18E4450900F1D68D /* RustyKext.c */; };
-		291302E818E4458200F1D68D /* RustyKext.rs in Sources */ = {isa = PBXBuildFile; fileRef = 291302E718E4458200F1D68D /* RustyKext.rs */; };
-		2979000618E6E2C70080E0E0 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 2979000518E6E2C70080E0E0 /* Readme.md */; };
+		29E732EA1B6D2B47004BDE4C /* rusty_kext.rs in Resources */ = {isa = PBXBuildFile; fileRef = 29E732E91B6D2B47004BDE4C /* rusty_kext.rs */; };
+		29E732EB1B6E4D2E004BDE4C /* rusty_kext.rs in Sources */ = {isa = PBXBuildFile; fileRef = 29E732E91B6D2B47004BDE4C /* rusty_kext.rs */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -22,10 +22,9 @@
 			isEditable = 1;
 			name = "Rust Source File";
 			outputFiles = (
-				"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.bc",
 				"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.o",
 			);
-			script = "mkdir -p \"${DERIVED_FILE_DIR}/rust-bin\"\n/usr/local/bin/rustc --out-dir \"${DERIVED_FILE_DIR}/rust-bin\" -O --emit bc --crate-type staticlib \"${INPUT_FILE_PATH}\" && \"${DT_TOOLCHAIN_DIR}/usr/bin/clang\" -mkernel -msoft-float -c     \"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.bc\" -o \"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.o\"\n";
+			script = "mkdir -p \"${DERIVED_FILE_DIR}/rust-bin\"\n\nif [ -z \"${GCC_OPTIMIZATION_LEVEL+xxx}\" ]; then\n    OPT_LEVEL=1\nelse\n    OPT_LEVEL=${GCC_OPTIMIZATION_LEVEL}\nfi\n\n/usr/local/bin/rustc --emit obj -C opt-level=${OPT_LEVEL} --crate-type staticlib -C soft-float -C no-redzone=y -C no-stack-check \"${INPUT_FILE_PATH}\" -o \"${DERIVED_FILE_DIR}/rust-bin/${INPUT_FILE_BASE}.o\"\n";
 		};
 /* End PBXBuildRule section */
 
@@ -36,8 +35,9 @@
 		291302DD18E4450900F1D68D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		291302DF18E4450900F1D68D /* RustyKext.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = RustyKext.c; sourceTree = "<group>"; };
 		291302E118E4450900F1D68D /* RustyKext-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RustyKext-Prefix.pch"; sourceTree = "<group>"; };
-		291302E718E4458200F1D68D /* RustyKext.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RustyKext.rs; sourceTree = "<group>"; };
 		2979000518E6E2C70080E0E0 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.md; sourceTree = SOURCE_ROOT; };
+		29E732E91B6D2B47004BDE4C /* rusty_kext.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rusty_kext.rs; sourceTree = "<group>"; };
+		29E732EC1B6E54E2004BDE4C /* RustyKext.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = RustyKext.exp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,10 +87,11 @@
 		291302D918E4450900F1D68D /* RustyKext */ = {
 			isa = PBXGroup;
 			children = (
+				29E732E91B6D2B47004BDE4C /* rusty_kext.rs */,
 				291302DF18E4450900F1D68D /* RustyKext.c */,
-				291302E718E4458200F1D68D /* RustyKext.rs */,
 				291302DA18E4450900F1D68D /* Supporting Files */,
 				2979000518E6E2C70080E0E0 /* Readme.md */,
+				29E732EC1B6E54E2004BDE4C /* RustyKext.exp */,
 			);
 			path = RustyKext;
 			sourceTree = "<group>";
@@ -168,7 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2979000618E6E2C70080E0E0 /* Readme.md in Resources */,
+				29E732EA1B6D2B47004BDE4C /* rusty_kext.rs in Resources */,
 				291302DE18E4450900F1D68D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,8 +191,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29E732EB1B6E4D2E004BDE4C /* rusty_kext.rs in Sources */,
 				291302E018E4450900F1D68D /* RustyKext.c in Sources */,
-				291302E818E4458200F1D68D /* RustyKext.rs in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +284,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXPORTED_SYMBOLS_FILE = RustyKext/RustyKext.exp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RustyKext/RustyKext-Prefix.pch";
 				INFOPLIST_FILE = "RustyKext/RustyKext-Info.plist";
@@ -291,6 +293,7 @@
 				MODULE_STOP = RustyKext_stop;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = kext;
 			};
 			name = Debug;
@@ -299,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXPORTED_SYMBOLS_FILE = RustyKext/RustyKext.exp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RustyKext/RustyKext-Prefix.pch";
 				INFOPLIST_FILE = "RustyKext/RustyKext-Info.plist";
@@ -307,6 +311,7 @@
 				MODULE_STOP = RustyKext_stop;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = kext;
 			};
 			name = Release;
